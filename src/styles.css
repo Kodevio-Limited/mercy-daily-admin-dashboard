@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-sans: 'Geist', sans-serif;
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+    --font-brand: var(--font-brand);
+    --color-brand: var(--brand);
+    --color-brand-foreground: var(--brand-foreground);
+    --color-card-mint: var(--card-mint);
+    --color-card-mint-foreground: var(--card-mint-foreground);
+    --color-card-blue: var(--card-blue);
+    --color-card-blue-foreground: var(--card-blue-foreground);
+    --color-card-pink: var(--card-pink);
+    --color-card-pink-foreground: var(--card-pink-foreground);
+    --color-card-peach: var(--card-peach);
+    --color-card-peach-foreground: var(--card-peach-foreground);
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+
+    --animate-support-card-in: support-card-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+    @keyframes support-card-in {
+        from {
+            opacity: 0;
+            transform: translateY(16px) scale(0.98);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+}
+
+:root {
+    --background: #fafaf9; /* Main page background */
+    --foreground: #2d3748; /* Dark gray text */
+    
+    --card: #ffffff;
+    --card-foreground: #2d3748;
+    
+    --popover: #ffffff;
+    --popover-foreground: #2d3748;
+    
+    --primary: #53624D; /* Dark Olive Green */
+    --primary-foreground: #ffffff;
+    
+    --secondary: #e2e8f0;
+    --secondary-foreground: #1a202c;
+    
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
+    
+    --accent: #f1f5f9;
+    --accent-foreground: #1a202c;
+    
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --ring: #53624D;
+
+    /* Brand */
+    --brand: #53624D;
+    --brand-foreground: #ffffff;
+
+    /* Pastel cards, soft warm colors */
+    --card-mint: #f0fdf4;
+    --card-mint-foreground: #166534;
+    --card-blue: #eff6ff;
+    --card-blue-foreground: #1e3a8a;
+    --card-pink: #fdf2f8;
+    --card-pink-foreground: #9d174d;
+    --card-peach: #fff7ed;
+    --card-peach-foreground: #9a3412;
+
+    /* Chart palette */
+    --chart-1: #1c305c; /* Dark blue for user growth */
+    --chart-2: #cda35f; /* Gold for community activity */
+    --chart-3: #53624D; /* Olive green */
+    --chart-4: #94a3b8; /* Gray for media views */
+    --chart-5: #3b82f6;
+
+    --radius: 0.75rem;
+    
+    --sidebar: #f4f6ef; /* Light greenish cream for sidebar */
+    --sidebar-foreground: #334155;
+    --sidebar-primary: #53624D;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #ffffff;
+    --sidebar-accent-foreground: #1e293b;
+    --sidebar-border: #e2e8f0;
+    --sidebar-ring: #53624D;
+}
+
+.dark {
+    --background: #0f172a;
+    --foreground: #f8fafc;
+    
+    --card: #1e293b;
+    --card-foreground: #f8fafc;
+    
+    --popover: #1e293b;
+    --popover-foreground: #f8fafc;
+    
+    --primary: #53624D;
+    --primary-foreground: #ffffff;
+    
+    --secondary: #334155;
+    --secondary-foreground: #f8fafc;
+    
+    --muted: #334155;
+    --muted-foreground: #94a3b8;
+    
+    --accent: #334155;
+    --accent-foreground: #f8fafc;
+    
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    
+    --border: #334155;
+    --input: #1e293b;
+    --ring: #53624D;
+
+    /* Brand */
+    --brand: #53624D;
+    --brand-foreground: #ffffff;
+
+    /* Pastel cards for dark mode */
+    --card-mint: #14532d;
+    --card-mint-foreground: #f0fdf4;
+    --card-blue: #1e3a8a;
+    --card-blue-foreground: #eff6ff;
+    --card-pink: #831843;
+    --card-pink-foreground: #fdf2f8;
+    --card-peach: #7c2d12;
+    --card-peach-foreground: #fff7ed;
+
+    /* Chart palette */
+    --chart-1: #3b82f6; /* Lighter blue for dark mode */
+    --chart-2: #fbbf24; /* Yellow/Gold for dark mode */
+    --chart-3: #84cc16; /* Light green */
+    --chart-4: #94a3b8;
+    --chart-5: #a855f7;
+
+    --radius: 0.75rem;
+    
+    --sidebar: #0f172a;
+    --sidebar-foreground: #f8fafc;
+    --sidebar-primary: #53624D;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #1e293b;
+    --sidebar-accent-foreground: #f8fafc;
+    --sidebar-border: #334155;
+    --sidebar-ring: #53624D;
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+    html {
+        @apply font-sans;
+    }
+    a,
+    button {
+        @apply cursor-pointer;
+    }
+
+    /* Override Chrome autofill background color */
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 9999px var(--card) inset !important;
+        box-shadow: 0 0 0 9999px var(--card) inset !important;
+        -webkit-text-fill-color: var(--foreground) !important;
+        caret-color: var(--foreground);
+        transition: background-color 9999s ease-in-out 0s;
+    }
+
+    .dark input:-webkit-autofill,
+    .dark input:-webkit-autofill:hover,
+    .dark input:-webkit-autofill:focus,
+    .dark input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 9999px var(--card) inset !important;
+        box-shadow: 0 0 0 9999px var(--card) inset !important;
+        -webkit-text-fill-color: var(--foreground) !important;
+        caret-color: var(--foreground);
+        transition: background-color 9999s ease-in-out 0s;
+    }
+
+    /* Sonner Notification Overrides - Match app's primary orange theme */
+    [data-sonner-toaster] [data-sonner-toast][data-type="success"] {
+        background-color: var(--primary) !important;
+        border-color: var(--primary) !important;
+        color: var(--primary-foreground) !important;
+    }
+    [data-sonner-toaster] [data-sonner-toast][data-type="success"] [data-icon] {
+        color: var(--primary-foreground) !important;
+    }
+}
