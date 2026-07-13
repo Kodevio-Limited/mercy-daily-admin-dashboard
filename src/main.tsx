@@ -39,7 +39,7 @@ const rootElement = document.getElementById('app')!
 if (!rootElement.innerHTML) {
     const root = ReactDOM.createRoot(rootElement)
     root.render(
-        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+        <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
             <QueryClientProvider client={queryClient}>
                 <RouterProvider router={router} />
             </QueryClientProvider>
