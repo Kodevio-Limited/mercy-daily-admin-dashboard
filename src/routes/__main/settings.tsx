@@ -5,10 +5,15 @@ import { Separator } from '@/components/ui/separator'
 import { Switch } from '@/components/ui/switch'
 import { useMutation } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
-import { SlidersHorizontal, User, ShieldCheck, Camera, ArrowLeft } from 'lucide-react'
-import { useState } from 'react'
+import { SlidersHorizontal, User, ShieldCheck, Camera, ArrowLeft, FileText, FileSignature, Loader2, X } from 'lucide-react'
+import { useState, useEffect, useMemo } from 'react'
 import { toast } from 'sonner'
 import * as z from 'zod'
+import JoditEditor from 'jodit-react'
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
+import { Badge } from '@/components/ui/badge'
+import { useQueryClient, useQuery } from '@tanstack/react-query'
+import { staticContentApi } from '@/lib/settings'
 
 export const Route = createFileRoute('/__main/settings')({
     component: RouteComponent,
@@ -18,6 +23,8 @@ const TABS = [
     { id: 'general', label: 'General', icon: SlidersHorizontal },
     { id: 'profile', label: 'Profile', icon: User },
     { id: 'security', label: 'Security', icon: ShieldCheck },
+    { id: 'privacy-policy', label: 'Privacy Policy', icon: FileText },
+    { id: 'terms-and-conditions', label: 'Terms & Conditions', icon: FileSignature },
 ] as const
 
 type TabId = (typeof TABS)[number]['id']
@@ -74,6 +81,8 @@ function RouteComponent() {
                     {activeTab === 'general' && <GeneralTab />}
                     {activeTab === 'profile' && <ProfileTab />}
                     {activeTab === 'security' && <SecurityTab />}
+                    {activeTab === 'privacy-policy' && <PrivacyPolicyTab />}
+                    {activeTab === 'terms-and-conditions' && <TermsAndConditionsTab />}
                 </div>
             </div>
         </>
@@ -346,3 +355,386 @@ function SecurityTab() {
         </form>
     )
 }
+
+// ─── Privacy Policy & Terms Tabs ───────────────────────────────────────────────────────────────
+
+function PrivacyPolicyTab() {
+    const queryClient = useQueryClient()
+    const [content, setContent] = useState<string>('')
+    const [isInitialized, setIsInitialized] = useState(false)
+    const [isEditing, setIsEditing] = useState(false)
+    const [isPreviewOpen, setIsPreviewOpen] = useState(false)
+
+    const { data, isLoading, error } = useQuery({
+        queryKey: ['static-content', 'privacy-policy'],
+        queryFn: () => staticContentApi.get('privacy-policy'),
+    })
+
+    const updateContent = useMutation({
+        mutationFn: () =>
+            staticContentApi.update('privacy-policy', {
+                slug: data?.slug || 'privacy-policy',
+                title: data?.title || 'Privacy Policy',
+                content: content,
+            }),
+
+        onSuccess: () => {
+            toast.success('Privacy Policy updated successfully')
+            setIsEditing(false)
+
+            queryClient.invalidateQueries({
+                queryKey: ['static-content', 'privacy-policy'],
+            })
+        },
+
+        onError: () => {
+            toast.error('Failed to update Privacy Policy')
+        },
+    })
+
+    useEffect(() => {
+        if (!isLoading) {
+            setContent(data?.content ?? '')
+            setIsInitialized(true)
+        }
+    }, [data, isLoading])
+
+    const handleCancel = () => {
+        if (data) {
+            setContent(data.content ?? '')
+        }
+        setIsEditing(false)
+    }
+
+    const config = useMemo(
+        () => ({
+            height: 512,
+            readonly: !isEditing,
+            buttons: [
+                'bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', '|',
+                'font', 'fontsize', 'paragraph', '|',
+                'align', 'ul', 'ol', 'outdent', 'indent', '|',
+                'table', 'hr', 'link', '|',
+                'undo', 'redo',
+            ],
+            placeholder: 'Start typing...',
+        }),
+        [isEditing],
+    )
+
+    if (isLoading || !isInitialized) {
+        return (
+            <div className="flex flex-col justify-center items-center h-96 gap-4 text-muted-foreground">
+                <Loader2 className="size-8 animate-spin" />
+                <p>Loading Privacy Policy...</p>
+            </div>
+        )
+    }
+
+    if (error) {
+        return (
+            <div className="flex justify-center items-center h-96">
+                <p className="text-destructive font-medium">Error loading Privacy Policy</p>
+            </div>
+        )
+    }
+
+    return (
+        <div className="flex-1 flex flex-col gap-6 w-full mt-4">
+            <div>
+                <h3 className="text-xl font-semibold text-foreground">Privacy Policy</h3>
+                <p className="text-sm text-muted-foreground mt-0.5">Manage the application's privacy policy.</p>
+            </div>
+            <Separator />
+            <div className="rounded-xl overflow-hidden border shadow-sm">
+                <JoditEditor config={config} value={content} onBlur={(newContent) => setContent(newContent)} />
+            </div>
+
+            <div className="flex flex-col gap-4 mt-2">
+                <p className="text-sm font-medium text-foreground">Last updated: June 8, 2026 by Dianne Plummer.</p>
+
+                <div className="flex flex-col sm:flex-row gap-4 w-full">
+                    {!isEditing ? (
+                        <>
+                            <Button
+                                size="lg"
+                                variant="secondary"
+                                className="flex-1 rounded-full text-base h-12 bg-muted/50 hover:bg-muted shadow-none border"
+                                onClick={() => setIsPreviewOpen(true)}
+                            >
+                                Preview
+                            </Button>
+                            <Button
+                                size="lg"
+                                variant="default"
+                                className="flex-1 rounded-full text-base h-12"
+                                onClick={() => setIsEditing(true)}
+                            >
+                                Edit
+                            </Button>
+                        </>
+                    ) : (
+                        <>
+                            <Button
+                                size="lg"
+                                variant="outline"
+                                className="flex-1 rounded-full text-base h-12"
+                                onClick={handleCancel}
+                                disabled={updateContent.isPending}
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                size="lg"
+                                variant="default"
+                                disabled={updateContent.isPending}
+                                onClick={() => updateContent.mutate()}
+                                className="flex-1 rounded-full text-base h-12"
+                            >
+                                {updateContent.isPending && <Loader2 className="mr-2 size-4 animate-spin" />}
+                                Save Changes
+                            </Button>
+                        </>
+                    )}
+                </div>
+            </div>
+
+            <Dialog open={isPreviewOpen} onOpenChange={setIsPreviewOpen}>
+                <DialogContent
+                    showCloseButton={false}
+                    className="sm:max-w-5xl w-[92vw] h-[85vh] overflow-hidden flex flex-col p-0 rounded-3xl border-none shadow-2xl bg-slate-900 text-white outline-none"
+                >
+                    <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-slate-950">
+                        <div className="flex items-center gap-3">
+                            <div className="bg-primary/20 text-primary p-2 rounded-xl">
+                                <SlidersHorizontal className="size-5" />
+                            </div>
+                            <div>
+                                <DialogTitle className="text-lg font-bold tracking-tight text-white">Privacy Policy Preview</DialogTitle>
+                                <p className="text-xs text-white/50">Draft Version (Live View)</p>
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <Badge className="bg-green-500/20 text-green-400 hover:bg-green-500/20 border-none font-semibold px-3 py-1 rounded-full text-xs">
+                                Ready to Publish
+                            </Badge>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="size-8 rounded-full bg-white/10 hover:bg-white/20 text-white"
+                                onClick={() => setIsPreviewOpen(false)}
+                            >
+                                <X className="size-4" />
+                            </Button>
+                        </div>
+                    </div>
+
+                    <div className="flex-1 bg-slate-900/60 p-6 md:p-10 overflow-y-auto flex justify-center">
+                        <div className="w-full max-w-4xl bg-white text-slate-900 rounded-2xl shadow-2xl border border-slate-100 p-8 md:p-16 min-h-[60vh] h-fit relative">
+                            <div className="w-12 h-1 bg-primary rounded-full mx-auto mb-8" />
+                            <div className="prose prose-slate lg:prose-base max-w-none leading-relaxed text-slate-800">
+                                <div
+                                    dangerouslySetInnerHTML={{
+                                        __html:
+                                            content || '<p className="text-muted-foreground italic text-center">No content available.</p>',
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </DialogContent>
+            </Dialog>
+        </div>
+    )
+}
+
+function TermsAndConditionsTab() {
+    const queryClient = useQueryClient()
+    const [content, setContent] = useState<string>('')
+    const [isInitialized, setIsInitialized] = useState(false)
+    const [isEditing, setIsEditing] = useState(false)
+    const [isPreviewOpen, setIsPreviewOpen] = useState(false)
+
+    const { data, isLoading, error } = useQuery({
+        queryKey: ['static-content', 'terms-and-conditions'],
+        queryFn: () => staticContentApi.get('terms-and-conditions'),
+    })
+
+    const updateContent = useMutation({
+        mutationFn: () =>
+            staticContentApi.update('terms-and-conditions', {
+                slug: data?.slug || 'terms-and-conditions',
+                title: data?.title || 'Terms and Conditions',
+                content: content,
+            }),
+
+        onSuccess: () => {
+            toast.success('Terms & Conditions updated successfully')
+            setIsEditing(false)
+
+            queryClient.invalidateQueries({
+                queryKey: ['static-content', 'terms-and-conditions'],
+            })
+        },
+
+        onError: () => {
+            toast.error('Failed to update Terms & Conditions')
+        },
+    })
+
+    useEffect(() => {
+        if (!isLoading) {
+            setContent(data?.content ?? '')
+            setIsInitialized(true)
+        }
+    }, [data, isLoading])
+
+    const handleCancel = () => {
+        if (data) {
+            setContent(data.content ?? '')
+        }
+        setIsEditing(false)
+    }
+
+    const config = useMemo(
+        () => ({
+            height: 512,
+            readonly: !isEditing,
+            buttons: [
+                'bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', '|',
+                'font', 'fontsize', 'paragraph', '|',
+                'align', 'ul', 'ol', 'outdent', 'indent', '|',
+                'table', 'hr', 'link', '|',
+                'undo', 'redo',
+            ],
+            placeholder: 'Start typing...',
+        }),
+        [isEditing],
+    )
+
+    if (isLoading || !isInitialized) {
+        return (
+            <div className="flex flex-col justify-center items-center h-96 gap-4 text-muted-foreground">
+                <Loader2 className="size-8 animate-spin" />
+                <p>Loading Terms & Conditions...</p>
+            </div>
+        )
+    }
+
+    if (error) {
+        return (
+            <div className="flex justify-center items-center h-96">
+                <p className="text-destructive font-medium">Error loading Terms & Conditions</p>
+            </div>
+        )
+    }
+
+    return (
+        <div className="flex-1 flex flex-col gap-6 w-full mt-4">
+            <div>
+                <h3 className="text-xl font-semibold text-foreground">Terms & Conditions</h3>
+                <p className="text-sm text-muted-foreground mt-0.5">Manage the application's terms and conditions.</p>
+            </div>
+            <Separator />
+            <div className="rounded-xl overflow-hidden border shadow-sm">
+                <JoditEditor config={config} value={content} onBlur={(newContent) => setContent(newContent)} />
+            </div>
+
+            <div className="flex flex-col gap-4 mt-2">
+                <p className="text-sm font-medium text-foreground">Last updated: June 8, 2026 by Dianne Plummer.</p>
+
+                <div className="flex flex-col sm:flex-row gap-4 w-full">
+                    {!isEditing ? (
+                        <>
+                            <Button
+                                size="lg"
+                                variant="secondary"
+                                className="flex-1 rounded-full text-base h-12 bg-muted/50 hover:bg-muted shadow-none border"
+                                onClick={() => setIsPreviewOpen(true)}
+                            >
+                                Preview
+                            </Button>
+                            <Button
+                                size="lg"
+                                variant="default"
+                                className="flex-1 rounded-full text-base h-12"
+                                onClick={() => setIsEditing(true)}
+                            >
+                                Edit
+                            </Button>
+                        </>
+                    ) : (
+                        <>
+                            <Button
+                                size="lg"
+                                variant="outline"
+                                className="flex-1 rounded-full text-base h-12"
+                                onClick={handleCancel}
+                                disabled={updateContent.isPending}
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                size="lg"
+                                variant="default"
+                                disabled={updateContent.isPending}
+                                onClick={() => updateContent.mutate()}
+                                className="flex-1 rounded-full text-base h-12"
+                            >
+                                {updateContent.isPending && <Loader2 className="mr-2 size-4 animate-spin" />}
+                                Save Changes
+                            </Button>
+                        </>
+                    )}
+                </div>
+            </div>
+
+            <Dialog open={isPreviewOpen} onOpenChange={setIsPreviewOpen}>
+                <DialogContent
+                    showCloseButton={false}
+                    className="sm:max-w-5xl w-[92vw] h-[85vh] overflow-hidden flex flex-col p-0 rounded-3xl border-none shadow-2xl bg-slate-900 text-white outline-none"
+                >
+                    <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-slate-950">
+                        <div className="flex items-center gap-3">
+                            <div className="bg-primary/20 text-primary p-2 rounded-xl">
+                                <SlidersHorizontal className="size-5" />
+                            </div>
+                            <div>
+                                <DialogTitle className="text-lg font-bold tracking-tight text-white">Terms & Conditions Preview</DialogTitle>
+                                <p className="text-xs text-white/50">Draft Version (Live View)</p>
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <Badge className="bg-green-500/20 text-green-400 hover:bg-green-500/20 border-none font-semibold px-3 py-1 rounded-full text-xs">
+                                Ready to Publish
+                            </Badge>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="size-8 rounded-full bg-white/10 hover:bg-white/20 text-white"
+                                onClick={() => setIsPreviewOpen(false)}
+                            >
+                                <X className="size-4" />
+                            </Button>
+                        </div>
+                    </div>
+
+                    <div className="flex-1 bg-slate-900/60 p-6 md:p-10 overflow-y-auto flex justify-center">
+                        <div className="w-full max-w-4xl bg-white text-slate-900 rounded-2xl shadow-2xl border border-slate-100 p-8 md:p-16 min-h-[60vh] h-fit relative">
+                            <div className="w-12 h-1 bg-primary rounded-full mx-auto mb-8" />
+                            <div className="prose prose-slate lg:prose-base max-w-none leading-relaxed text-slate-800">
+                                <div
+                                    dangerouslySetInnerHTML={{
+                                        __html:
+                                            content || '<p className="text-muted-foreground italic text-center">No content available.</p>',
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </DialogContent>
+            </Dialog>
+        </div>
+    )
+}
+
