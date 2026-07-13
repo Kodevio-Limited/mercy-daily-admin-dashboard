@@ -56,72 +56,61 @@ function RouteComponent() {
     })
 
     return (
-        <Card className="w-full max-w-[854px] min-h-[526px] mx-auto rounded-[20px] shadow-[0px_12px_50px_-12px_rgba(0,0,0,0.25)] border border-border/70 justify-center">
-            <CardContent className="py-0 w-full">
-                <div className="max-w-[458px] mx-auto flex flex-col gap-6">
-                    {/* Header */}
-                    <div className="text-center flex flex-col gap-1">
-                        <h1 className="text-3xl font-extrabold text-foreground">Reset Password</h1>
-                        <p className="text-base text-muted-foreground">
-                            Create a new password for your account.
-                        </p>
-                    </div>
+        <div className="w-full flex flex-col gap-6">
+            <h1 className="text-2xl font-medium text-foreground mb-1">Reset Password</h1>
+            <p className="text-sm text-muted-foreground mb-4">
+                Create a new password for your account.
+            </p>
 
-                    {/* Form */}
-                    <form
-                        className="flex flex-col gap-6"
-                        autoComplete="off"
-                        onSubmit={(e) => {
-                            e.preventDefault()
-                            form.handleSubmit()
-                        }}
-                    >
-                        <form.AppField name="password">
-                            {(field) => (
-                                <field.FormInput
-                                    type="password"
-                                    label="New Password"
-                                    icon={<Lock className="text-muted-foreground w-4 h-4" />}
-                                    iconRight={
-                                        <button type="button" className="focus:outline-none">
-                                            <EyeOff className="text-muted-foreground w-4 h-4" />
-                                        </button>
-                                    }
-                                    placeholder="Enter your new password"
-                                />
-                            )}
-                        </form.AppField>
+            <form
+                className="flex flex-col gap-5"
+                autoComplete="off"
+                onSubmit={(e) => {
+                    e.preventDefault()
+                    form.handleSubmit()
+                }}
+            >
+                <form.AppField name="password">
+                    {(field) => (
+                        <field.FormInput
+                            type="password"
+                            label="New Password"
+                            iconRight={
+                                <button type="button" className="focus:outline-none text-muted-foreground hover:text-foreground">
+                                    <EyeOff className="w-4 h-4" />
+                                </button>
+                            }
+                            placeholder="Enter your new password"
+                        />
+                    )}
+                </form.AppField>
 
-                        <form.AppField name="confirmPassword">
-                            {(field) => (
-                                <field.FormInput
-                                    type="password"
-                                    label="Confirm Password"
-                                    icon={<Lock className="text-muted-foreground w-4 h-4" />}
-                                    iconRight={
-                                        <button type="button" className="focus:outline-none">
-                                            <EyeOff className="text-muted-foreground w-4 h-4" />
-                                        </button>
-                                    }
-                                    placeholder="Confirm your new password"
-                                />
-                            )}
-                        </form.AppField>
+                <form.AppField name="confirmPassword">
+                    {(field) => (
+                        <field.FormInput
+                            type="password"
+                            label="Confirm Password"
+                            iconRight={
+                                <button type="button" className="focus:outline-none text-muted-foreground hover:text-foreground">
+                                    <EyeOff className="w-4 h-4" />
+                                </button>
+                            }
+                            placeholder="Confirm your new password"
+                        />
+                    )}
+                </form.AppField>
 
-                        <form.AppForm>
-                            <form.FormSubmit
-                                label="Reset Password"
-                                className="w-full h-12 text-base font-medium rounded-2xl shadow-[0px_12px_50px_0px_rgba(253,105,0,0.30)]"
-                            />
-                        </form.AppForm>
-                    </form>
+                <form.AppForm>
+                    <form.FormSubmit
+                        label="Reset Password"
+                        className="w-full h-12 mt-2 text-base font-medium rounded-full bg-[#555B51] hover:bg-[#555B51]/90 text-white shadow-md border-none"
+                    />
+                </form.AppForm>
+            </form>
 
-                    {/* Footer */}
-                    <Button asChild variant="outline" className="w-full h-12 rounded-2xl">
-                        <Link to="/signin">Back to Sign In</Link>
-                    </Button>
-                </div>
-            </CardContent>
-        </Card>
+            <Button asChild variant="outline" className="w-full h-12 rounded-full border-muted-foreground/30 hover:bg-black/5 mt-2">
+                <Link to="/signin">Back to Sign In</Link>
+            </Button>
+        </div>
     )
 }

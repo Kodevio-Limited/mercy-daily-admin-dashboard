@@ -40,54 +40,44 @@ function RouteComponent() {
     })
 
     return (
-        <Card className="w-full max-w-[854px] min-h-[526px] mx-auto rounded-[20px] shadow-[0px_12px_50px_-12px_rgba(0,0,0,0.25)] border border-border/70 justify-center">
-            <CardContent className="py-0 w-full">
-                <div className="max-w-[458px] mx-auto flex flex-col gap-6">
-                    {/* Header */}
-                    <div className="text-center flex flex-col gap-1">
-                        <h1 className="text-3xl font-extrabold text-foreground">Forgot Password</h1>
-                        <p className="text-base text-muted-foreground">
-                            Enter your email and we'll send you a password reset link.
-                        </p>
-                    </div>
+        <div className="w-full flex flex-col gap-6">
+            <h1 className="text-2xl font-medium text-foreground mb-1">Forgot Password</h1>
+            <p className="text-sm text-muted-foreground mb-4">
+                Enter your email and we'll send you a password reset link.
+            </p>
 
-                    {/* Form */}
-                    <form
-                        className="flex flex-col gap-6"
-                        autoComplete="off"
-                        onSubmit={(e) => {
-                            e.preventDefault()
-                            form.handleSubmit()
-                        }}
-                    >
-                        <form.AppField name="email">
-                            {(field) => (
-                                <field.FormInput
-                                    type="email"
-                                    label="Email"
-                                    icon={<Mail className="text-muted-foreground w-4 h-4" />}
-                                    placeholder="Enter your email"
-                                />
-                            )}
-                        </form.AppField>
+            <form
+                className="flex flex-col gap-5"
+                autoComplete="off"
+                onSubmit={(e) => {
+                    e.preventDefault()
+                    form.handleSubmit()
+                }}
+            >
+                <form.AppField name="email">
+                    {(field) => (
+                        <field.FormInput
+                            type="email"
+                            label="Email Address"
+                            placeholder="Enter Your Email"
+                        />
+                    )}
+                </form.AppField>
 
-                        <form.AppForm>
-                            <form.FormSubmit
-                                label="Send Reset Link"
-                                className="w-full h-12 text-base font-medium rounded-2xl shadow-[0px_12px_50px_0px_rgba(253,105,0,0.30)]"
-                            />
-                        </form.AppForm>
-                    </form>
+                <form.AppForm>
+                    <form.FormSubmit
+                        label="Send Reset Link"
+                        className="w-full h-12 mt-2 text-base font-medium rounded-full bg-[#555B51] hover:bg-[#555B51]/90 text-white shadow-md border-none"
+                    />
+                </form.AppForm>
+            </form>
 
-                    {/* Footer */}
-                    <p className="text-center text-sm text-muted-foreground">
-                        Remember your password?{' '}
-                        <Link to="/signin" className="text-primary font-medium hover:underline">
-                            Sign in
-                        </Link>
-                    </p>
-                </div>
-            </CardContent>
-        </Card>
+            <p className="text-center text-sm text-muted-foreground mt-4">
+                Remember your password?{' '}
+                <Link to="/signin" className="text-foreground font-semibold hover:underline">
+                    Sign in
+                </Link>
+            </p>
+        </div>
     )
 }

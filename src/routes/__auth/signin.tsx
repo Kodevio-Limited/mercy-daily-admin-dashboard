@@ -45,73 +45,62 @@ function RouteComponent() {
     })
 
     return (
-        <Card className="w-full max-w-[854px] min-h-[526px] mx-auto rounded-[20px] shadow-[0px_12px_50px_-12px_rgba(0,0,0,0.25)] border border-border/70 justify-center">
-            <CardContent className="py-0 w-full">
-                <div className="max-w-[458px] mx-auto flex flex-col gap-6">
-                    {/* Header */}
-                    <div className="text-center flex flex-col gap-1">
-                        <h1 className="text-3xl font-extrabold text-foreground">Login</h1>
-                        <p className="text-base text-muted-foreground">
-                            Your journey starts here. Log into your account
-                        </p>
-                    </div>
+        <div className="w-full flex flex-col gap-6">
+            <h1 className="text-2xl font-medium text-foreground mb-4">Welcome Mercy</h1>
 
-                    {/* Form */}
-                    <form
-                        className="flex flex-col gap-6"
-                        autoComplete="off"
-                        onSubmit={(e) => {
-                            e.preventDefault()
-                            form.handleSubmit()
-                        }}
+            <form
+                className="flex flex-col gap-5"
+                autoComplete="off"
+                onSubmit={(e) => {
+                    e.preventDefault()
+                    form.handleSubmit()
+                }}
+            >
+                <form.AppField name="email">
+                    {(field) => (
+                        <field.FormInput
+                            type="email"
+                            label="Email Address"
+                            placeholder="Enter Your Email"
+                        />
+                    )}
+                </form.AppField>
+
+                <form.AppField name="password">
+                    {(field) => (
+                        <field.FormInput
+                            type="password"
+                            label="Password"
+                            iconRight={
+                                <button type="button" className="focus:outline-none text-muted-foreground hover:text-foreground">
+                                    <EyeOff className="w-4 h-4" />
+                                </button>
+                            }
+                            placeholder="Type Your password"
+                        />
+                    )}
+                </form.AppField>
+
+                <div className="flex items-center justify-between py-2">
+                    <label className="flex items-center gap-2 text-xs text-muted-foreground cursor-pointer">
+                        <input type="checkbox" className="rounded-sm border-muted-foreground/30 text-[#555B51] focus:ring-[#555B51] bg-transparent" />
+                        Remember me
+                    </label>
+                    <Link
+                        to="/forgot-password"
+                        className="text-xs font-semibold text-foreground hover:underline"
                     >
-                        <form.AppField name="email">
-                            {(field) => (
-                                <field.FormInput
-                                    type="email"
-                                    label="Email"
-                                    icon={<Mail className="text-muted-foreground w-4 h-4" />}
-                                    placeholder="Enter your email"
-                                />
-                            )}
-                        </form.AppField>
-
-                        <div className="flex flex-col gap-3.5">
-                            <form.AppField name="password">
-                                {(field) => (
-                                    <field.FormInput
-                                        type="password"
-                                        label="Password"
-                                        icon={<Lock className="text-muted-foreground w-4 h-4" />}
-                                        iconRight={
-                                            <button type="button" className="focus:outline-none">
-                                                <EyeOff className="text-muted-foreground w-4 h-4" />
-                                            </button>
-                                        }
-                                        placeholder="Enter your password"
-                                    />
-                                )}
-                            </form.AppField>
-
-                            <div className="flex justify-end">
-                                <Link
-                                    to="/forgot-password"
-                                    className="text-primary text-xs hover:underline"
-                                >
-                                    Forgot password?
-                                </Link>
-                            </div>
-                        </div>
-
-                        <form.AppForm>
-                            <form.FormSubmit
-                                label="Login"
-                                className="w-full h-12 text-base font-medium rounded-2xl shadow-[0px_12px_50px_0px_rgba(253,105,0,0.30)]"
-                            />
-                        </form.AppForm>
-                    </form>
+                        Forget Password
+                    </Link>
                 </div>
-            </CardContent>
-        </Card>
+
+                <form.AppForm>
+                    <form.FormSubmit
+                        label="Sign in"
+                        className="w-full h-12 text-base font-medium rounded-full bg-[#555B51] hover:bg-[#555B51]/90 text-white shadow-md border-none"
+                    />
+                </form.AppForm>
+            </form>
+        </div>
     )
 }
