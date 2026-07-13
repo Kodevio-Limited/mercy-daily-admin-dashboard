@@ -2,7 +2,7 @@
 
 import { NavMain } from '@/components/main/nav-main'
 import { NavUser } from '@/components/main/nav-user'
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from '@/components/ui/sidebar'
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '@/components/ui/sidebar'
 import { MODULES, MODULE_KEYS } from '@/lib/module'
 import { MODULE_ICONS } from '@/lib/module-icons'
 
@@ -20,13 +20,17 @@ export function AppSidebar({ user, ...props }: React.ComponentProps<typeof Sideb
 
     return (
         <Sidebar collapsible="icon" {...props}>
-            <SidebarHeader>
-                <div className="flex items-center gap-2 overflow-hidden">
-                    <div className="flex size-8 shrink-0 items-center justify-center rounded-lg overflow-hidden">
-                        <img src="/Bamudi_logo.png" alt="Logo" className="size-full object-contain" />
-                    </div>
-                    <span className="truncate text-lg font-semibold group-data-[collapsible=icon]:hidden">Bamudi</span>
-                </div>
+            <SidebarHeader className="px-4 py-3 group-data-[collapsible=icon]:!px-2">
+                <SidebarMenu>
+                    <SidebarMenuItem>
+                        <SidebarMenuButton size="lg" className="hover:bg-transparent cursor-default px-5 group-data-[collapsible=icon]:!px-0 group-data-[collapsible=icon]:justify-center">
+                            <div className="flex aspect-square size-8 items-center justify-center rounded-lg group-data-[collapsible=icon]:mx-auto">
+                                <img src="/favicon.svg" alt="Icon" className="size-full object-contain hidden group-data-[collapsible=icon]:block" />
+                            </div>
+                            <img src="/mercy-logo.svg" alt="Logo" className="h-11 w-auto object-contain group-data-[collapsible=icon]:hidden -ml-2" />
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
+                </SidebarMenu>
             </SidebarHeader>
             <SidebarContent>
                 <NavMain items={navMain} user={user} />
