@@ -20,7 +20,7 @@ export function NavMain({
     const visibleItems = React.useMemo(() => items.filter((item) => hasRoutePermission(user, item.url)), [items, user])
 
     return (
-        <SidebarGroup className="px-4 group-data-[collapsible=icon]:!px-2">
+        <SidebarGroup className="px-4 group-data-[collapsible=icon]:px-0">
             <SidebarMenu className="gap-3">
                 {visibleItems.map((item) => {
                     const isActive = item.url === '/' ? pathname === '/' : pathname.startsWith(item.url)
@@ -32,7 +32,7 @@ export function NavMain({
                                 tooltip={item.title} 
                                 asChild 
                                 onClick={() => setOpenMobile(false)}
-                                className={`h-11 rounded-full px-5 group-data-[collapsible=icon]:!px-0 group-data-[collapsible=icon]:justify-center shadow-sm transition-all duration-200 border border-transparent ${
+                                className={`h-11 rounded-full px-5 group-data-[collapsible=icon]:!px-0 group-data-[collapsible=icon]:w-11 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:mx-auto shadow-sm transition-all duration-200 border border-transparent ${
                                     isActive 
                                         ? 'bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground shadow-md' 
                                         : 'bg-white text-foreground hover:bg-white hover:border-border hover:shadow-md dark:bg-card dark:text-card-foreground dark:hover:bg-card'
@@ -42,7 +42,7 @@ export function NavMain({
                                     <div className={`p-1.5 rounded-full ${isActive ? 'bg-white/20' : 'bg-transparent'}`}>
                                         {item.icon}
                                     </div>
-                                    <span className="font-medium text-base">{item.title}</span>
+                                    <span className="font-medium text-base group-data-[collapsible=icon]:hidden">{item.title}</span>
                                 </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>

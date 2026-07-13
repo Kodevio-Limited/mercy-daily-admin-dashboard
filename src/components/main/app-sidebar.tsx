@@ -20,17 +20,11 @@ export function AppSidebar({ user, ...props }: React.ComponentProps<typeof Sideb
 
     return (
         <Sidebar collapsible="icon" {...props}>
-            <SidebarHeader className="px-4 py-3 group-data-[collapsible=icon]:!px-2">
-                <SidebarMenu>
-                    <SidebarMenuItem>
-                        <SidebarMenuButton size="lg" className="hover:bg-transparent cursor-default px-5 group-data-[collapsible=icon]:!px-0 group-data-[collapsible=icon]:justify-center">
-                            <div className="flex aspect-square size-8 items-center justify-center rounded-lg group-data-[collapsible=icon]:mx-auto">
-                                <img src="/favicon.svg" alt="Icon" className="size-full object-contain hidden group-data-[collapsible=icon]:block" />
-                            </div>
-                            <img src="/mercy-logo.svg" alt="Logo" className="h-11 w-auto object-contain group-data-[collapsible=icon]:hidden -ml-2" />
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
-                </SidebarMenu>
+            <SidebarHeader className="px-4 py-3 group-data-[collapsible=icon]:px-0">
+                <div className="flex h-11 items-center px-5 group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:w-11 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:mx-auto">
+                    <img src="/favicon.svg" alt="Icon" className="size-8 shrink-0 object-contain hidden group-data-[collapsible=icon]:block" />
+                    <img src="/mercy-logo.svg" alt="Logo" className="h-11 w-auto object-contain group-data-[collapsible=icon]:hidden -ml-2" />
+                </div>
             </SidebarHeader>
             <SidebarContent>
                 <NavMain items={navMain} user={user} />
