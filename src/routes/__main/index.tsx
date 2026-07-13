@@ -14,6 +14,7 @@ import {
 } from 'recharts'
 import { motion } from 'motion/react'
 import type { Variants } from 'motion/react'
+import { motionTokens } from '@/lib/motionTokens'
 
 const containerVariants: Variants = {
     hidden: {},
@@ -23,8 +24,8 @@ const containerVariants: Variants = {
 }
 
 const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }
+    hidden: { opacity: 0, y: motionTokens.distance.md },
+    visible: { opacity: 1, y: 0, transition: { duration: motionTokens.duration.normal, ease: motionTokens.easing.smooth } }
 }
 
 export const Route = createFileRoute('/__main/')({
@@ -66,9 +67,9 @@ function RouteComponent() {
             {/* Hero Banner */}
             <motion.div 
                 className="bg-[#53624D] rounded-2xl p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative overflow-hidden shadow-lg"
-                initial={{ opacity: 0, y: -20 }}
+                initial={{ opacity: 0, y: -motionTokens.distance.sm }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: motionTokens.duration.normal, ease: motionTokens.easing.smooth }}
             >
                 {/* Decorative overlay pattern could go here */}
                 <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white to-transparent pointer-events-none" />

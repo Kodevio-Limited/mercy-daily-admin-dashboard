@@ -188,7 +188,7 @@ export function CommunityUI({
                     </div>
                 </div>
 
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col">
                     <h3 className="text-[#1c305c] font-bold text-sm uppercase">Community Groups</h3>
                     <DataTable
                         columns={columns}

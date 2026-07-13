@@ -125,8 +125,7 @@ export function PrayerManagementUI({
                 </div>
             </div>
 
-            <div className="flex flex-col gap-2">
-                <h3 className="text-[#1c305c] font-bold text-sm uppercase">Daily Prayer Management</h3>
+            <div className="flex flex-col">
                 <DataTable
                     columns={columns}
                     data={prayers}

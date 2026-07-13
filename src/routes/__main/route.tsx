@@ -6,6 +6,7 @@ import { getModuleByPath, MODULE_KEYS, MODULES } from '@/lib/module'
 import { createFileRoute, Outlet, useRouterState } from '@tanstack/react-router'
 import { ModeToggle } from '@/components/mode-toggle'
 import { motion, AnimatePresence } from 'motion/react'
+import { motionTokens } from '@/lib/motionTokens'
 
 export const Route = createFileRoute('/__main')({
     beforeLoad: async () => {
@@ -73,10 +74,10 @@ function RouteComponent() {
                         <motion.div 
                             key={pathname} 
                             className="flex flex-1 flex-col gap-4 p-4 sm:p-6 min-w-0 w-full"
-                            initial={{ opacity: 0, y: 8 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -8 }}
-                            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                            initial={{ opacity: 0, scale: 0.99 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.99 }}
+                            transition={{ duration: motionTokens.duration.normal, ease: motionTokens.easing.smooth }}
                         >
                             <Outlet />
                         </motion.div>

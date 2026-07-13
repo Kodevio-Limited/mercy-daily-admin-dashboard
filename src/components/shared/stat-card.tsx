@@ -3,6 +3,7 @@ import { ArrowDownRight, ArrowUpRight  } from 'lucide-react'
 import type {LucideIcon} from 'lucide-react';
 import { motion  } from 'motion/react'
 import type {Variants} from 'motion/react';
+import { motionTokens } from '@/lib/motionTokens'
 
 const COLOR_MAP = {
     blue: {
@@ -57,9 +58,9 @@ export function StatCard({ label, value, icon: Icon, color, trend, className }: 
 
     return (
         <motion.div
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={{ y: -2, scale: 1.01 }}
+            whileTap={{ scale: 0.99 }}
+            transition={{ duration: motionTokens.duration.fast, ease: motionTokens.easing.smooth }}
             className={cn(
                 'group relative flex flex-col border border-border/50 rounded-xl gap-2 p-4 overflow-hidden transition-colors duration-200 hover:border-border cursor-pointer bg-card text-card-foreground shadow-sm',
                 className,
@@ -113,8 +114,8 @@ export function StatCardsGrid({ cards, className }: { cards: StatCardProps[], cl
                 <motion.div 
                     key={idx}
                     variants={{
-                        hidden: { opacity: 0, y: 15 },
-                        visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }
+                        hidden: { opacity: 0, y: motionTokens.distance.md },
+                        visible: { opacity: 1, y: 0, transition: { duration: motionTokens.duration.normal, ease: motionTokens.easing.smooth } }
                     }}
                 >
                     <StatCard {...card} />

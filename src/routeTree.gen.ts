@@ -15,19 +15,15 @@ import { Route as _mainIndexRouteImport } from './routes/__main/index'
 import { Route as _mainUserManagementRouteImport } from './routes/__main/user-management'
 import { Route as _mainSubscriptionsRouteImport } from './routes/__main/subscriptions'
 import { Route as _mainSettingsRouteImport } from './routes/__main/settings'
-import { Route as _mainRolesRouteImport } from './routes/__main/roles'
 import { Route as _mainPrayerManagementRouteImport } from './routes/__main/prayer-management'
 import { Route as _mainPaymentsRouteImport } from './routes/__main/payments'
 import { Route as _mainNotificationsRouteImport } from './routes/__main/notifications'
 import { Route as _mainDailyContentRouteImport } from './routes/__main/daily-content'
 import { Route as _mainCommunityRouteImport } from './routes/__main/community'
-import { Route as _mainAnalyticsRouteImport } from './routes/__main/analytics'
 import { Route as _authVerificationRouteImport } from './routes/__auth/verification'
 import { Route as _authSigninRouteImport } from './routes/__auth/signin'
 import { Route as _authResetPasswordRouteImport } from './routes/__auth/reset-password'
 import { Route as _authForgotPasswordRouteImport } from './routes/__auth/forgot-password'
-import { Route as _mainSupportIndexRouteImport } from './routes/__main/support.index'
-import { Route as _mainSupportIdRouteImport } from './routes/__main/support.$id'
 
 const _mainRouteRoute = _mainRouteRouteImport.update({
   id: '/__main',
@@ -57,11 +53,6 @@ const _mainSettingsRoute = _mainSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => _mainRouteRoute,
 } as any)
-const _mainRolesRoute = _mainRolesRouteImport.update({
-  id: '/roles',
-  path: '/roles',
-  getParentRoute: () => _mainRouteRoute,
-} as any)
 const _mainPrayerManagementRoute = _mainPrayerManagementRouteImport.update({
   id: '/prayer-management',
   path: '/prayer-management',
@@ -87,11 +78,6 @@ const _mainCommunityRoute = _mainCommunityRouteImport.update({
   path: '/community',
   getParentRoute: () => _mainRouteRoute,
 } as any)
-const _mainAnalyticsRoute = _mainAnalyticsRouteImport.update({
-  id: '/analytics',
-  path: '/analytics',
-  getParentRoute: () => _mainRouteRoute,
-} as any)
 const _authVerificationRoute = _authVerificationRouteImport.update({
   id: '/verification',
   path: '/verification',
@@ -112,16 +98,6 @@ const _authForgotPasswordRoute = _authForgotPasswordRouteImport.update({
   path: '/forgot-password',
   getParentRoute: () => _authRouteRoute,
 } as any)
-const _mainSupportIndexRoute = _mainSupportIndexRouteImport.update({
-  id: '/support/',
-  path: '/support/',
-  getParentRoute: () => _mainRouteRoute,
-} as any)
-const _mainSupportIdRoute = _mainSupportIdRouteImport.update({
-  id: '/support/$id',
-  path: '/support/$id',
-  getParentRoute: () => _mainRouteRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof _mainIndexRoute
@@ -129,18 +105,14 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof _authResetPasswordRoute
   '/signin': typeof _authSigninRoute
   '/verification': typeof _authVerificationRoute
-  '/analytics': typeof _mainAnalyticsRoute
   '/community': typeof _mainCommunityRoute
   '/daily-content': typeof _mainDailyContentRoute
   '/notifications': typeof _mainNotificationsRoute
   '/payments': typeof _mainPaymentsRoute
   '/prayer-management': typeof _mainPrayerManagementRoute
-  '/roles': typeof _mainRolesRoute
   '/settings': typeof _mainSettingsRoute
   '/subscriptions': typeof _mainSubscriptionsRoute
   '/user-management': typeof _mainUserManagementRoute
-  '/support/$id': typeof _mainSupportIdRoute
-  '/support/': typeof _mainSupportIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof _mainIndexRoute
@@ -148,18 +120,14 @@ export interface FileRoutesByTo {
   '/reset-password': typeof _authResetPasswordRoute
   '/signin': typeof _authSigninRoute
   '/verification': typeof _authVerificationRoute
-  '/analytics': typeof _mainAnalyticsRoute
   '/community': typeof _mainCommunityRoute
   '/daily-content': typeof _mainDailyContentRoute
   '/notifications': typeof _mainNotificationsRoute
   '/payments': typeof _mainPaymentsRoute
   '/prayer-management': typeof _mainPrayerManagementRoute
-  '/roles': typeof _mainRolesRoute
   '/settings': typeof _mainSettingsRoute
   '/subscriptions': typeof _mainSubscriptionsRoute
   '/user-management': typeof _mainUserManagementRoute
-  '/support/$id': typeof _mainSupportIdRoute
-  '/support': typeof _mainSupportIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -169,19 +137,15 @@ export interface FileRoutesById {
   '/__auth/reset-password': typeof _authResetPasswordRoute
   '/__auth/signin': typeof _authSigninRoute
   '/__auth/verification': typeof _authVerificationRoute
-  '/__main/analytics': typeof _mainAnalyticsRoute
   '/__main/community': typeof _mainCommunityRoute
   '/__main/daily-content': typeof _mainDailyContentRoute
   '/__main/notifications': typeof _mainNotificationsRoute
   '/__main/payments': typeof _mainPaymentsRoute
   '/__main/prayer-management': typeof _mainPrayerManagementRoute
-  '/__main/roles': typeof _mainRolesRoute
   '/__main/settings': typeof _mainSettingsRoute
   '/__main/subscriptions': typeof _mainSubscriptionsRoute
   '/__main/user-management': typeof _mainUserManagementRoute
   '/__main/': typeof _mainIndexRoute
-  '/__main/support/$id': typeof _mainSupportIdRoute
-  '/__main/support/': typeof _mainSupportIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -191,18 +155,14 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/signin'
     | '/verification'
-    | '/analytics'
     | '/community'
     | '/daily-content'
     | '/notifications'
     | '/payments'
     | '/prayer-management'
-    | '/roles'
     | '/settings'
     | '/subscriptions'
     | '/user-management'
-    | '/support/$id'
-    | '/support/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -210,18 +170,14 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/signin'
     | '/verification'
-    | '/analytics'
     | '/community'
     | '/daily-content'
     | '/notifications'
     | '/payments'
     | '/prayer-management'
-    | '/roles'
     | '/settings'
     | '/subscriptions'
     | '/user-management'
-    | '/support/$id'
-    | '/support'
   id:
     | '__root__'
     | '/__auth'
@@ -230,19 +186,15 @@ export interface FileRouteTypes {
     | '/__auth/reset-password'
     | '/__auth/signin'
     | '/__auth/verification'
-    | '/__main/analytics'
     | '/__main/community'
     | '/__main/daily-content'
     | '/__main/notifications'
     | '/__main/payments'
     | '/__main/prayer-management'
-    | '/__main/roles'
     | '/__main/settings'
     | '/__main/subscriptions'
     | '/__main/user-management'
     | '/__main/'
-    | '/__main/support/$id'
-    | '/__main/support/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -294,13 +246,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof _mainSettingsRouteImport
       parentRoute: typeof _mainRouteRoute
     }
-    '/__main/roles': {
-      id: '/__main/roles'
-      path: '/roles'
-      fullPath: '/roles'
-      preLoaderRoute: typeof _mainRolesRouteImport
-      parentRoute: typeof _mainRouteRoute
-    }
     '/__main/prayer-management': {
       id: '/__main/prayer-management'
       path: '/prayer-management'
@@ -336,13 +281,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof _mainCommunityRouteImport
       parentRoute: typeof _mainRouteRoute
     }
-    '/__main/analytics': {
-      id: '/__main/analytics'
-      path: '/analytics'
-      fullPath: '/analytics'
-      preLoaderRoute: typeof _mainAnalyticsRouteImport
-      parentRoute: typeof _mainRouteRoute
-    }
     '/__auth/verification': {
       id: '/__auth/verification'
       path: '/verification'
@@ -371,20 +309,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof _authForgotPasswordRouteImport
       parentRoute: typeof _authRouteRoute
     }
-    '/__main/support/': {
-      id: '/__main/support/'
-      path: '/support'
-      fullPath: '/support/'
-      preLoaderRoute: typeof _mainSupportIndexRouteImport
-      parentRoute: typeof _mainRouteRoute
-    }
-    '/__main/support/$id': {
-      id: '/__main/support/$id'
-      path: '/support/$id'
-      fullPath: '/support/$id'
-      preLoaderRoute: typeof _mainSupportIdRouteImport
-      parentRoute: typeof _mainRouteRoute
-    }
   }
 }
 
@@ -407,35 +331,27 @@ const _authRouteRouteWithChildren = _authRouteRoute._addFileChildren(
 )
 
 interface _mainRouteRouteChildren {
-  _mainAnalyticsRoute: typeof _mainAnalyticsRoute
   _mainCommunityRoute: typeof _mainCommunityRoute
   _mainDailyContentRoute: typeof _mainDailyContentRoute
   _mainNotificationsRoute: typeof _mainNotificationsRoute
   _mainPaymentsRoute: typeof _mainPaymentsRoute
   _mainPrayerManagementRoute: typeof _mainPrayerManagementRoute
-  _mainRolesRoute: typeof _mainRolesRoute
   _mainSettingsRoute: typeof _mainSettingsRoute
   _mainSubscriptionsRoute: typeof _mainSubscriptionsRoute
   _mainUserManagementRoute: typeof _mainUserManagementRoute
   _mainIndexRoute: typeof _mainIndexRoute
-  _mainSupportIdRoute: typeof _mainSupportIdRoute
-  _mainSupportIndexRoute: typeof _mainSupportIndexRoute
 }
 
 const _mainRouteRouteChildren: _mainRouteRouteChildren = {
-  _mainAnalyticsRoute: _mainAnalyticsRoute,
   _mainCommunityRoute: _mainCommunityRoute,
   _mainDailyContentRoute: _mainDailyContentRoute,
   _mainNotificationsRoute: _mainNotificationsRoute,
   _mainPaymentsRoute: _mainPaymentsRoute,
   _mainPrayerManagementRoute: _mainPrayerManagementRoute,
-  _mainRolesRoute: _mainRolesRoute,
   _mainSettingsRoute: _mainSettingsRoute,
   _mainSubscriptionsRoute: _mainSubscriptionsRoute,
   _mainUserManagementRoute: _mainUserManagementRoute,
   _mainIndexRoute: _mainIndexRoute,
-  _mainSupportIdRoute: _mainSupportIdRoute,
-  _mainSupportIndexRoute: _mainSupportIndexRoute,
 }
 
 const _mainRouteRouteWithChildren = _mainRouteRoute._addFileChildren(
