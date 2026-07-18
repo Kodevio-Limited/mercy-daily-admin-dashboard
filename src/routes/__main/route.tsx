@@ -62,13 +62,13 @@ function RouteComponent() {
                         </div>
                     </header>
                     <AnimatePresence mode="wait">
-                        <motion.div 
-                            key={pathname} 
+                        <motion.div
+                            key={pathname}
                             className="flex flex-1 flex-col gap-4 p-4 sm:p-6 min-w-0 w-full"
-                            initial={{ opacity: 0, scale: 0.99 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.99 }}
-                            transition={{ duration: motionTokens.duration.normal, ease: motionTokens.easing.smooth }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: motionTokens.duration.fast }}
                         >
                             <Outlet />
                         </motion.div>

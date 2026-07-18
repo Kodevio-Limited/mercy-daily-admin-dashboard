@@ -19,13 +19,13 @@ import { motionTokens } from '@/lib/motionTokens'
 const containerVariants: Variants = {
     hidden: {},
     visible: {
-        transition: { staggerChildren: 0.1 }
+        transition: { staggerChildren: 0.05 }
     }
 }
 
 const itemVariants: Variants = {
-    hidden: { opacity: 0, y: motionTokens.distance.md },
-    visible: { opacity: 1, y: 0, transition: { duration: motionTokens.duration.normal, ease: motionTokens.easing.smooth } }
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: motionTokens.duration.fast, ease: motionTokens.easing.smooth } }
 }
 
 export const Route = createFileRoute('/__main/')({
@@ -50,9 +50,9 @@ const PERFORMANCE_DATA = [
 
 // Mock pie data
 const PIE_DATA = [
-    { name: 'Prayers', value: 45, color: '#1c305c' },      // Dark blue
-    { name: 'Community', value: 30, color: '#cda35f' },    // Gold
-    { name: 'Media/Views', value: 25, color: '#94a3b8' },  // Gray
+    { name: 'Prayers', value: 45, color: 'var(--chart-1)' },
+    { name: 'Community', value: 30, color: 'var(--chart-2)' },
+    { name: 'Media/Views', value: 25, color: 'var(--chart-4)' },
 ]
 
 const ACTIVITIES = [
@@ -65,11 +65,11 @@ function RouteComponent() {
     return (
         <div className="flex flex-col gap-6 w-full max-w-full overflow-hidden pb-10">
             {/* Hero Banner */}
-            <motion.div 
-                className="bg-[#53624D] rounded-2xl p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative overflow-hidden shadow-lg"
-                initial={{ opacity: 0, y: -motionTokens.distance.sm }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: motionTokens.duration.normal, ease: motionTokens.easing.smooth }}
+            <motion.div
+                className="bg-primary rounded-2xl p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative overflow-hidden shadow-lg"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: motionTokens.duration.fast }}
             >
                 {/* Decorative overlay pattern could go here */}
                 <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-white to-transparent pointer-events-none" />
@@ -91,8 +91,8 @@ function RouteComponent() {
                     <div className="text-white/70 text-[10px] font-bold uppercase tracking-wider mb-1">TODAY'S SYSTEM DATE</div>
                     <div className="text-2xl font-bold text-white mb-2">July 06, 2026</div>
                     <div className="flex items-center gap-2">
-                        <div className="size-2 rounded-full bg-[#10b981] shadow-[0_0_8px_#10b981]"></div>
-                        <span className="text-[#10b981] text-xs font-semibold">Server Synced</span>
+                        <div className="size-2 rounded-full bg-success shadow-[0_0_8px_var(--success)]"></div>
+                        <span className="text-success text-xs font-semibold">Server Synced</span>
                     </div>
                 </div>
             </motion.div>
@@ -125,16 +125,16 @@ function RouteComponent() {
                         <CardHeader className="pb-2">
                             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                                 <div>
-                                    <CardTitle className="text-lg font-bold text-[#1c305c]">Analytical Performance Map</CardTitle>
+                                    <CardTitle className="text-lg font-bold text-chart-1">Analytical Performance Map</CardTitle>
                                     <CardDescription>Visualizing registered users & community activity metrics</CardDescription>
                                 </div>
                                 <div className="flex items-center gap-4 text-sm font-medium">
                                     <div className="flex items-center gap-2">
-                                        <div className="w-3 h-3 rounded-full bg-[#1c305c]"></div>
+                                        <div className="w-3 h-3 rounded-full bg-chart-1"></div>
                                         <span className="text-muted-foreground">User Growth</span>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <div className="w-3 h-3 rounded-full bg-[#cda35f]"></div>
+                                        <div className="w-3 h-3 rounded-full bg-chart-2"></div>
                                         <span className="text-muted-foreground">Community Activity</span>
                                     </div>
                                 </div>
@@ -146,25 +146,25 @@ function RouteComponent() {
                                     <AreaChart data={PERFORMANCE_DATA} margin={{ top: 20, right: 0, left: 0, bottom: 0 }}>
                                         <defs>
                                             <linearGradient id="colorUser" x1="0" y1="0" x2="0" y2="1">
-                                                <stop offset="5%" stopColor="#1c305c" stopOpacity={0.1}/>
-                                                <stop offset="95%" stopColor="#1c305c" stopOpacity={0}/>
+                                                <stop offset="5%" stopColor="var(--chart-1)" stopOpacity={0.1}/>
+                                                <stop offset="95%" stopColor="var(--chart-1)" stopOpacity={0}/>
                                             </linearGradient>
                                             <linearGradient id="colorComm" x1="0" y1="0" x2="0" y2="1">
-                                                <stop offset="5%" stopColor="#cda35f" stopOpacity={0.1}/>
-                                                <stop offset="95%" stopColor="#cda35f" stopOpacity={0}/>
+                                                <stop offset="5%" stopColor="var(--chart-2)" stopOpacity={0.1}/>
+                                                <stop offset="95%" stopColor="var(--chart-2)" stopOpacity={0}/>
                                             </linearGradient>
                                         </defs>
-                                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border)" />
                                         <XAxis 
                                             dataKey="name" 
                                             axisLine={false} 
                                             tickLine={false} 
-                                            tick={{ fill: '#94a3b8', fontSize: 12, fontWeight: 500 }}
+                                            tick={{ fill: 'var(--muted-foreground)', fontSize: 12, fontWeight: 500 }}
                                             dy={10}
                                         />
-                                        <Tooltip cursor={{ stroke: '#94a3b8', strokeWidth: 1, strokeDasharray: '3 3' }} />
-                                        <Area type="monotone" dataKey="userGrowth" stroke="#1c305c" strokeWidth={3} fillOpacity={1} fill="url(#colorUser)" />
-                                        <Area type="monotone" dataKey="communityActivity" stroke="#cda35f" strokeWidth={3} fillOpacity={1} fill="url(#colorComm)" />
+                                        <Tooltip cursor={{ stroke: 'var(--muted-foreground)', strokeWidth: 1, strokeDasharray: '3 3' }} />
+                                        <Area type="monotone" dataKey="userGrowth" stroke="var(--chart-1)" strokeWidth={3} fillOpacity={1} fill="url(#colorUser)" />
+                                        <Area type="monotone" dataKey="communityActivity" stroke="var(--chart-2)" strokeWidth={3} fillOpacity={1} fill="url(#colorComm)" />
                                     </AreaChart>
                                 </ResponsiveContainer>
                             </div>
@@ -173,15 +173,15 @@ function RouteComponent() {
                             <div className="flex items-center justify-between border-t border-border pt-4 mt-2">
                                 <div className="flex flex-col">
                                     <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Average Session</span>
-                                    <span className="text-base font-bold text-[#1c305c]">14 min 32s</span>
+                                    <span className="text-base font-bold text-chart-1">14 min 32s</span>
                                 </div>
                                 <div className="flex flex-col">
                                     <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Response Rate</span>
-                                    <span className="text-base font-bold text-[#1c305c]">98.4%</span>
+                                    <span className="text-base font-bold text-chart-1">98.4%</span>
                                 </div>
                                 <div className="flex flex-col">
                                     <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Server Latency</span>
-                                    <span className="text-base font-bold text-[#10b981]">45ms</span>
+                                    <span className="text-base font-bold text-success">45ms</span>
                                 </div>
                             </div>
                         </CardContent>
@@ -192,7 +192,7 @@ function RouteComponent() {
                 <motion.div variants={itemVariants} className="lg:col-span-1">
                     <Card className="border border-border/50 shadow-sm h-full flex flex-col">
                         <CardHeader className="pb-2">
-                            <CardTitle className="text-lg font-bold text-[#1c305c]">Engagement Distribution</CardTitle>
+                            <CardTitle className="text-lg font-bold text-chart-1">Engagement Distribution</CardTitle>
                             <CardDescription>Where community interactions happen</CardDescription>
                         </CardHeader>
                         <CardContent className="flex flex-col items-center justify-center flex-1 p-6 pt-0">
@@ -214,7 +214,7 @@ function RouteComponent() {
                                     </PieChart>
                                 </ResponsiveContainer>
                                 <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                                    <span className="text-3xl font-extrabold text-[#1c305c]">74%</span>
+                                    <span className="text-3xl font-extrabold text-chart-1">74%</span>
                                     <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Total Rate</span>
                                 </div>
                             </div>
@@ -224,14 +224,14 @@ function RouteComponent() {
                                     <div key={item.name} className="flex items-center justify-between">
                                         <div className="flex items-center gap-2">
                                             <div className="w-3 h-3 rounded bg-gray-200" style={{ backgroundColor: item.color }}></div>
-                                            <span className="text-sm font-semibold text-[#1c305c]">{item.name}</span>
+                                            <span className="text-sm font-semibold text-chart-1">{item.name}</span>
                                         </div>
                                         <span className="text-sm font-bold text-muted-foreground">({item.value}%)</span>
                                     </div>
                                 ))}
                             </div>
 
-                            <button className="w-full mt-8 py-3 rounded-lg bg-gray-50 border border-gray-200 text-sm font-bold text-[#1c305c] hover:bg-gray-100 transition-colors">
+                            <button className="w-full mt-8 py-3 rounded-lg bg-gray-50 border border-gray-200 text-sm font-bold text-chart-1 hover:bg-gray-100 transition-colors">
                                 Launch Deep Analytics Interface
                             </button>
                         </CardContent>
@@ -243,12 +243,12 @@ function RouteComponent() {
             <motion.div variants={itemVariants} className="w-full">
                 <Card className="border border-border/50 shadow-sm overflow-hidden">
                     <CardHeader className="pb-4">
-                        <CardTitle className="text-lg font-bold text-[#1c305c]">Recent Activities Logs</CardTitle>
+                        <CardTitle className="text-lg font-bold text-chart-1">Recent Activities Logs</CardTitle>
                         <CardDescription>Audit trail of global application interactions</CardDescription>
                     </CardHeader>
                     <div className="overflow-x-auto">
                         <table className="w-full text-sm text-left">
-                            <thead className="bg-[#53624D] text-white text-[11px] font-bold uppercase tracking-wider">
+                            <thead className="bg-primary text-primary-foreground text-[11px] font-bold uppercase tracking-wider">
                                 <tr>
                                     <th className="px-6 py-4 rounded-tl-sm">USER</th>
                                     <th className="px-6 py-4">ACTIVITY</th>
@@ -267,16 +267,16 @@ function RouteComponent() {
                                                     <img src="/placeholder.jpg" alt={act.user} className="size-full object-cover" />
                                                 </div>
                                                 <div className="flex flex-col">
-                                                    <span className="font-bold text-[#1c305c]">{act.user}</span>
+                                                    <span className="font-bold text-chart-1">{act.user}</span>
                                                     <span className="text-xs text-muted-foreground">{act.email}</span>
                                                 </div>
                                             </div>
                                         </td>
                                         <td className="px-6 py-4 font-medium text-foreground">{act.activity}</td>
                                         <td className="px-6 py-4 text-muted-foreground font-medium">{act.module}</td>
-                                        <td className="px-6 py-4 font-semibold text-[#1c305c]">{act.date}</td>
+                                        <td className="px-6 py-4 font-semibold text-chart-1">{act.date}</td>
                                         <td className="px-6 py-4">
-                                            <span className={`font-bold ${act.status === 'Active' ? 'text-[#10b981]' : 'text-red-500'}`}>
+                                            <span className={`font-bold ${act.status === 'Active' ? 'text-success' : 'text-red-500'}`}>
                                                 {act.status}
                                             </span>
                                         </td>
@@ -303,11 +303,11 @@ function StatCard({ title, value, change, subtitle }: { title: string, value: st
                 <CardContent className="p-5 flex flex-col justify-between h-full gap-4">
                     <div className="flex flex-col gap-1">
                         <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">{title}</span>
-                        <span className="text-2xl font-extrabold text-[#1c305c]">{value}</span>
+                        <span className="text-2xl font-extrabold text-chart-1">{value}</span>
                     </div>
                     
                     <div className="flex flex-col items-start gap-1">
-                        <div className="inline-flex items-center rounded-full bg-[#10b981]/10 px-2 py-0.5 text-[11px] font-bold text-[#10b981]">
+                        <div className="inline-flex items-center rounded-full bg-success/10 px-2 py-0.5 text-[11px] font-bold text-success">
                             {change}
                         </div>
                         <span className="text-[11px] font-medium text-muted-foreground">{subtitle}</span>

@@ -82,7 +82,7 @@ function RouteComponent() {
 
                 <div className="flex items-center justify-between py-2">
                     <label className="flex items-center gap-2 text-xs text-muted-foreground cursor-pointer">
-                        <input type="checkbox" className="rounded-sm border-muted-foreground/30 text-[#555B51] focus:ring-[#555B51] bg-transparent" />
+                        <input type="checkbox" className="rounded-sm border-muted-foreground/30 text-auth-button focus:ring-auth-button bg-transparent" />
                         Remember me
                     </label>
                     <Link
@@ -96,7 +96,7 @@ function RouteComponent() {
                 <form.AppForm>
                     <form.FormSubmit
                         label="Sign in"
-                        className="w-full h-12 text-base font-medium rounded-full bg-[#555B51] hover:bg-[#555B51]/90 text-white shadow-md border-none"
+                        className="w-full h-12 text-base font-medium rounded-full bg-auth-button hover:bg-auth-button/90 text-auth-button-foreground shadow-md border-none"
                     />
                 </form.AppForm>
             </form>

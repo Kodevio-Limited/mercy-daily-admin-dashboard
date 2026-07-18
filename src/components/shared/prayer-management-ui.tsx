@@ -80,12 +80,12 @@ export function PrayerManagementUI({
                 header: 'STATUS',
                 render: (row) =>
                     row.status === 'Published' ? (
-                        <span className="flex items-center gap-1.5 text-[#10b981] font-semibold text-sm">
+                        <span className="flex items-center gap-1.5 text-success font-semibold text-sm">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                             Published
                         </span>
                     ) : (
-                        <span className="flex items-center gap-1.5 text-[#3b82f6] font-semibold text-sm">
+                        <span className="flex items-center gap-1.5 text-info font-semibold text-sm">
                             <CheckSquare className="h-3.5 w-3.5" />
                             Scheduled
                         </span>
@@ -107,21 +107,17 @@ export function PrayerManagementUI({
     )
 
     return (
-        <div className="flex flex-col w-full max-w-full overflow-hidden relative">
-            {/* Top Action Row (Absolute or just flex-end depending on layout) */}
-            <div className="flex justify-end -mt-10">
-                <Button onClick={onCreatePrayer} className="bg-[#53624D] hover:bg-[#43503e] text-white rounded-md px-4 h-9">
-                    <Plus className="mr-2 h-4 w-4" />
-                    Create Prayer
-                </Button>
-            </div>
-
+        <div className="flex flex-col w-full max-w-full relative">
             {/* Header & Toolbar */}
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-border/50">
-                <PageHeader title="Prayer Management" className="shrink-0 text-xl font-bold text-[#1c305c]" />
+                <PageHeader title="Prayer Management" className="shrink-0 text-xl font-bold text-chart-1" />
                 <div className="flex items-center flex-wrap gap-3">
                     <SearchInput value={searchQuery} onValueChange={onSearchChange} placeholder="Search..." className="w-full sm:w-62.5 bg-white rounded-full h-10 shadow-sm border-gray-200" />
                     <FilterBuilder options={filterOptions} filters={filters} onFiltersChange={onFiltersChange} />
+                    <Button onClick={onCreatePrayer} className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-4 h-9">
+                        <Plus className="mr-2 h-4 w-4" />
+                        Create Prayer
+                    </Button>
                 </div>
             </div>
 

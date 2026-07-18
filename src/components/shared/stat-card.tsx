@@ -1,9 +1,6 @@
 import { cn } from '@/lib/utils'
 import { ArrowDownRight, ArrowUpRight  } from 'lucide-react'
 import type {LucideIcon} from 'lucide-react';
-import { motion  } from 'motion/react'
-import type {Variants} from 'motion/react';
-import { motionTokens } from '@/lib/motionTokens'
 
 const COLOR_MAP = {
     blue: {
@@ -57,10 +54,7 @@ export function StatCard({ label, value, icon: Icon, color, trend, className }: 
     const colors = COLOR_MAP[color]
 
     return (
-        <motion.div
-            whileHover={{ y: -2, scale: 1.01 }}
-            whileTap={{ scale: 0.99 }}
-            transition={{ duration: motionTokens.duration.fast, ease: motionTokens.easing.smooth }}
+        <div
             className={cn(
                 'group relative flex flex-col border border-border/50 rounded-xl gap-2 p-4 overflow-hidden transition-colors duration-200 hover:border-border cursor-pointer bg-card text-card-foreground shadow-sm',
                 className,
@@ -93,34 +87,16 @@ export function StatCard({ label, value, icon: Icon, color, trend, className }: 
                     </div>
                 )}
             </div>
-        </motion.div>
+        </div>
     )
 }
 
 export function StatCardsGrid({ cards, className }: { cards: StatCardProps[], className?: string }) {
     return (
-        <motion.div 
-            className={cn("grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4", className)}
-            initial="hidden"
-            animate="visible"
-            variants={{
-                hidden: {},
-                visible: {
-                    transition: { staggerChildren: 0.08 }
-                }
-            }}
-        >
+        <div className={cn("grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4", className)}>
             {cards.map((card, idx) => (
-                <motion.div 
-                    key={idx}
-                    variants={{
-                        hidden: { opacity: 0, y: motionTokens.distance.md },
-                        visible: { opacity: 1, y: 0, transition: { duration: motionTokens.duration.normal, ease: motionTokens.easing.smooth } }
-                    }}
-                >
-                    <StatCard {...card} />
-                </motion.div>
+                <StatCard key={idx} {...card} />
             ))}
-        </motion.div>
+        </div>
     )
 }

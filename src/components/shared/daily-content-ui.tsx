@@ -72,7 +72,7 @@ export function DailyContentUI({
                 header: 'STATUS',
                 render: (row) =>
                     row.status === 'Published' ? (
-                        <span className="flex items-center gap-1.5 text-[#10b981] font-semibold text-sm">
+                        <span className="flex items-center gap-1.5 text-success font-semibold text-sm">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                             Published
                         </span>
@@ -99,7 +99,7 @@ export function DailyContentUI({
         <div className="">
             {/* Header & Toolbar */}
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-border/50">
-                <PageHeader title="Content" className="shrink-0 text-xl font-bold text-[#1c305c]" />
+                <PageHeader title="Content" className="shrink-0 text-xl font-bold text-chart-1" />
                 <div className="flex items-center flex-wrap gap-3">
                     <SearchInput value={searchQuery} onValueChange={onSearchChange} placeholder="Search..." className="w-full sm:w-62.5 bg-white rounded-full h-10 shadow-sm border-gray-200" />
                     <FilterBuilder options={filterOptions} filters={filters} onFiltersChange={onFiltersChange} />

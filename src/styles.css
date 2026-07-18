@@ -120,6 +120,29 @@
     --chart-4: #94a3b8; /* Gray for media views */
     --chart-5: #3b82f6;
 
+    /* Status colors */
+    --success: #10b981;
+    --success-foreground: #10b981;
+    --info: #3b82f6;
+
+    /* Auth button */
+    --auth-button: #555B51;
+    --auth-button-foreground: #ffffff;
+
+    /* Dialog warm palette */
+    --dialog-bg: #FCF7F2;
+    --dialog-border: #E5D4C0;
+    --dialog-text: #38261A;
+    --dialog-muted: #7B7169;
+
+    /* Progress status colors */
+    --progress-available: rgb(0, 139, 63);
+    --progress-reserved: rgb(255, 170, 0);
+    --progress-shipped: rgb(6, 163, 255);
+    --progress-cleaning: rgb(145, 82, 255);
+    --progress-repair: rgb(211, 0, 4);
+    --progress-default: rgb(0, 113, 181);
+
     --radius: 0.75rem;
     
     --sidebar: #f4f6ef; /* Light greenish cream for sidebar */
@@ -181,6 +204,29 @@
     --chart-3: #84cc16; /* Light green */
     --chart-4: #94a3b8;
     --chart-5: #a855f7;
+
+    /* Status colors (dark mode) */
+    --success: #34d399;
+    --success-foreground: #34d399;
+    --info: #60a5fa;
+
+    /* Auth button (dark mode) */
+    --auth-button: #6b7c65;
+    --auth-button-foreground: #ffffff;
+
+    /* Dialog warm palette (dark mode) */
+    --dialog-bg: #1e293b;
+    --dialog-border: #334155;
+    --dialog-text: #f8fafc;
+    --dialog-muted: #94a3b8;
+
+    /* Progress status colors (dark mode - same) */
+    --progress-available: rgb(0, 139, 63);
+    --progress-reserved: rgb(255, 170, 0);
+    --progress-shipped: rgb(6, 163, 255);
+    --progress-cleaning: rgb(145, 82, 255);
+    --progress-repair: rgb(211, 0, 4);
+    --progress-default: rgb(0, 113, 181);
 
     --radius: 0.75rem;
     

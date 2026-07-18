@@ -118,7 +118,7 @@ export function UserManagementUI({
                 header: 'STATUS',
                 render: (user) =>
                     user.status === 'Active' ? (
-                        <span className="text-[#10b981] font-semibold text-sm">Active</span>
+                        <span className="text-success font-semibold text-sm">Active</span>
                     ) : (
                         <span className="text-red-500 font-semibold text-sm">Delete</span>
                     ),
@@ -142,7 +142,7 @@ export function UserManagementUI({
         <>
             {/* Header & Toolbar */}
             <div className="flex flex-col lg:flex-row lg:items-center justify-between border-b border-border/50">
-                <PageHeader title="User Management" className="shrink-0 text-xl font-bold text-[#1c305c]" />
+                <PageHeader title="User Management" className="shrink-0 text-xl font-bold text-chart-1" />
                 <div className="flex items-center flex-wrap gap-3">
                     <SearchInput value={searchQuery} onValueChange={onSearchChange} placeholder="Search..." className="w-full sm:w-62.5 bg-white rounded-full h-10 shadow-sm border-gray-200" />
                     <FilterBuilder options={filterOptions} filters={filters} onFiltersChange={onFiltersChange} />
@@ -166,15 +166,15 @@ export function UserManagementUI({
                     if (!open) closeDialog()
                 }}
             >
-                <DialogContent className="sm:max-w-2xl p-0 overflow-hidden bg-[#FCF7F2] border-[#E5D4C0]">
-                    <DialogHeader className="px-6 py-5 border-b border-[#E5D4C0]/70 m-0">
-                        <DialogTitle className="text-3xl font-extrabold text-[#38261A]">{isEditMode ? 'Edit User' : 'Add New User'}</DialogTitle>
-                        <DialogDescription className="text-[15px] font-medium text-[#7B7169] mt-1">
+                <DialogContent className="sm:max-w-2xl p-0 overflow-hidden bg-dialog-bg border-dialog-border">
+                    <DialogHeader className="px-6 py-5 border-b border-dialog-border/70 m-0">
+                        <DialogTitle className="text-3xl font-extrabold text-dialog-text">{isEditMode ? 'Edit User' : 'Add New User'}</DialogTitle>
+                        <DialogDescription className="text-[15px] font-medium text-dialog-muted mt-1">
                             {isEditMode ? `Modify details for ${editingUser?.name}.` : 'Enter the details of the new user to register them.'}
                         </DialogDescription>
                     </DialogHeader>
 
-                    <div className="px-6 pb-6 pt-2 max-h-[80vh] overflow-y-auto [&_label]:text-[#38261A] [&_label]:text-[15px] [&_label]:font-medium [&_label]:mb-1.5 [&_label]:block [&_input]:bg-transparent [&_input]:border-[#E5D4C0] [&_input]:focus-visible:ring-primary/20 [&_input]:placeholder:text-muted-foreground/60 [&_input]:h-11 [&_input]:text-base [&_button[role=combobox]]:bg-transparent [&_button[role=combobox]]:border-[#E5D4C0] [&_button[role=combobox]]:h-11 [&_button[role=combobox]]:text-base">
+                    <div className="px-6 pb-6 pt-2 max-h-[80vh] overflow-y-auto [&_label]:text-dialog-text [&_label]:text-[15px] [&_label]:font-medium [&_label]:mb-1.5 [&_label]:block [&_input]:bg-transparent [&_input]:border-dialog-border [&_input]:focus-visible:ring-primary/20 [&_input]:placeholder:text-muted-foreground/60 [&_input]:h-11 [&_input]:text-base [&_button[role=combobox]]:bg-transparent [&_button[role=combobox]]:border-dialog-border [&_button[role=combobox]]:h-11 [&_button[role=combobox]]:text-base">
                         <UserForm
                             key={editingUser?.id ?? 'add'}
                             defaultValues={

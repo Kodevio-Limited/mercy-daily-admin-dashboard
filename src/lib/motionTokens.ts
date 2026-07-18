@@ -1,10 +1,9 @@
 export const motionTokens = {
   duration: {
-    fast: 0.2,
-    normal: 0.4,
-    slow: 0.6
+    fast: 0.15,
+    normal: 0.2,
+    slow: 0.3
   },
-  // Production-ready easings for snappy but smooth feel
   easing: {
     smooth: [0.22, 1, 0.36, 1] as [number, number, number, number],
     sharp:  [0.4,  0, 0.2, 1] as [number, number, number, number]

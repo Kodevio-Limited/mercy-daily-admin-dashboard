@@ -67,7 +67,7 @@ function RouteComponent() {
                 <form.AppForm>
                     <form.FormSubmit
                         label="Send Reset Link"
-                        className="w-full h-12 mt-2 text-base font-medium rounded-full bg-[#555B51] hover:bg-[#555B51]/90 text-white shadow-md border-none"
+                        className="w-full h-12 mt-2 text-base font-medium rounded-full bg-auth-button hover:bg-auth-button/90 text-auth-button-foreground shadow-md border-none"
                     />
                 </form.AppForm>
             </form>

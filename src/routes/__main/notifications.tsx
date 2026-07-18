@@ -87,21 +87,21 @@ function NotificationsPage() {
 
             {/* Create Notification Dialog */}
             <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
-                <DialogContent className="sm:max-w-125 p-0 overflow-hidden bg-[#FCF7F2] border-[#E5D4C0]">
-                    <DialogHeader className="px-6 py-5 border-b border-[#E5D4C0]/70 m-0">
-                        <DialogTitle className="text-3xl font-extrabold text-[#38261A]">Create Notification</DialogTitle>
+                <DialogContent className="sm:max-w-125 p-0 overflow-hidden bg-dialog-bg border-dialog-border">
+                    <DialogHeader className="px-6 py-5 border-b border-dialog-border/70 m-0">
+                        <DialogTitle className="text-3xl font-extrabold text-dialog-text">Create Notification</DialogTitle>
                     </DialogHeader>
 
                     <div className="px-6 pb-6 pt-2 space-y-5">
                         <div className="space-y-2">
-                            <Label className="text-[#38261A] text-[15px] font-medium">Title</Label>
-                            <Input placeholder="Enter notification title" className="bg-transparent border-[#E5D4C0] focus-visible:ring-primary/20 placeholder:text-muted-foreground/60 h-11" />
+                            <Label className="text-dialog-text text-[15px] font-medium">Title</Label>
+                            <Input placeholder="Enter notification title" className="bg-transparent border-dialog-border focus-visible:ring-primary/20 placeholder:text-muted-foreground/60 h-11" />
                         </div>
                         
                         <div className="space-y-2">
-                            <Label className="text-[#38261A] text-[15px] font-medium">Audience</Label>
+                            <Label className="text-dialog-text text-[15px] font-medium">Audience</Label>
                             <Select>
-                                <SelectTrigger className="bg-transparent border-[#E5D4C0] focus:ring-primary/20 h-11 w-full data-placeholder:text-muted-foreground/60 text-base">
+                                <SelectTrigger className="bg-transparent border-dialog-border focus:ring-primary/20 h-11 w-full data-placeholder:text-muted-foreground/60 text-base">
                                     <SelectValue placeholder="Select your audience" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -113,22 +113,22 @@ function NotificationsPage() {
                         </div>
                         
                         <div className="space-y-2">
-                            <Label className="text-[#38261A] text-[15px] font-medium">Schedule</Label>
+                            <Label className="text-dialog-text text-[15px] font-medium">Schedule</Label>
                             <div className="relative">
-                                <Input placeholder="mm/dd/yyyy" className="bg-transparent border-[#E5D4C0] focus-visible:ring-primary/20 placeholder:text-muted-foreground/60 h-11 pr-10" />
+                                <Input placeholder="mm/dd/yyyy" className="bg-transparent border-dialog-border focus-visible:ring-primary/20 placeholder:text-muted-foreground/60 h-11 pr-10" />
                                 <CalendarIcon className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground/70" />
                             </div>
                         </div>
 
                         <div className="space-y-2">
-                            <Label className="text-[#38261A] text-[15px] font-medium">Message</Label>
-                            <Textarea placeholder="Typing" className="bg-transparent border-[#E5D4C0] focus-visible:ring-primary/20 placeholder:text-muted-foreground/60 min-h-30 resize-none text-base" />
+                            <Label className="text-dialog-text text-[15px] font-medium">Message</Label>
+                            <Textarea placeholder="Typing" className="bg-transparent border-dialog-border focus-visible:ring-primary/20 placeholder:text-muted-foreground/60 min-h-30 resize-none text-base" />
                         </div>
 
                         <div className="flex items-center gap-3 mt-4 pt-2">
                             <Button 
                                 variant="outline"
-                                className="flex-1 h-11 border-[#E5D4C0] text-muted-foreground hover:bg-black/5 hover:text-muted-foreground rounded-lg text-base font-medium"
+                                className="flex-1 h-11 border-dialog-border text-muted-foreground hover:bg-black/5 hover:text-muted-foreground rounded-lg text-base font-medium"
                                 onClick={() => setIsCreateOpen(false)}
                             >
                                 <Clock className="h-4.5 w-4.5 mr-2" />

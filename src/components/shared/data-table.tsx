@@ -95,7 +95,7 @@ function DataTable<T>({
         <>
             <div className="overflow-x-auto rounded-lg border border-border">
                 <Table>
-                    <TableHeader className="bg-[#53624D] [&_th]:text-white [&_th]:text-[11px] [&_th]:font-bold [&_th]:uppercase [&_th]:tracking-wider [&_th:first-child]:rounded-tl-md [&_th:last-child]:rounded-tr-md">
+                    <TableHeader className="bg-primary [&_th]:text-primary-foreground [&_th]:text-[11px] [&_th]:font-bold [&_th]:uppercase [&_th]:tracking-wider [&_th:first-child]:rounded-tl-md [&_th:last-child]:rounded-tr-md">
                         <TableRow className="hover:bg-transparent border-0">
                             {columns.map((col) => (
                                 <TableHead key={col.key}>{col.header}</TableHead>
