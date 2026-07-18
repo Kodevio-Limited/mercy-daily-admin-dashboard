@@ -170,9 +170,9 @@ export function CommunityUI({
 
     return (
         <>
-            <div className="flex flex-col gap-6 w-full max-w-full overflow-hidden relative">
+            <div className="flex flex-col w-full max-w-full overflow-hidden relative">
                 {/* Top Action Row */}
-                <div className="flex justify-end -mt-10 mb-2">
+                <div className="flex justify-end -mt-10">
                     <Button onClick={openCreate} className="bg-[#53624D] hover:bg-[#43503e] text-white rounded-md px-4 h-9">
                         <Plus className="mr-2 h-4 w-4" />
                         Create Group
@@ -189,7 +189,6 @@ export function CommunityUI({
                 </div>
 
                 <div className="flex flex-col">
-                    <h3 className="text-[#1c305c] font-bold text-sm uppercase">Community Groups</h3>
                     <DataTable
                         columns={columns}
                         data={groups}

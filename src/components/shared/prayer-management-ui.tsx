@@ -107,9 +107,9 @@ export function PrayerManagementUI({
     )
 
     return (
-        <div className="flex flex-col gap-6 w-full max-w-full overflow-hidden relative">
+        <div className="flex flex-col w-full max-w-full overflow-hidden relative">
             {/* Top Action Row (Absolute or just flex-end depending on layout) */}
-            <div className="flex justify-end -mt-10 mb-2">
+            <div className="flex justify-end -mt-10">
                 <Button onClick={onCreatePrayer} className="bg-[#53624D] hover:bg-[#43503e] text-white rounded-md px-4 h-9">
                     <Plus className="mr-2 h-4 w-4" />
                     Create Prayer
@@ -120,7 +120,7 @@ export function PrayerManagementUI({
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-border/50">
                 <PageHeader title="Prayer Management" className="shrink-0 text-xl font-bold text-[#1c305c]" />
                 <div className="flex items-center flex-wrap gap-3">
-                    <SearchInput value={searchQuery} onValueChange={onSearchChange} placeholder="Search..." className="w-full sm:w-[250px] bg-white rounded-full h-10 shadow-sm border-gray-200" />
+                    <SearchInput value={searchQuery} onValueChange={onSearchChange} placeholder="Search..." className="w-full sm:w-62.5 bg-white rounded-full h-10 shadow-sm border-gray-200" />
                     <FilterBuilder options={filterOptions} filters={filters} onFiltersChange={onFiltersChange} />
                 </div>
             </div>

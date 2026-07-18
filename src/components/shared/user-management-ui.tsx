@@ -1,13 +1,10 @@
-import { Button } from '@/components/ui/button'
 import { DataTable } from '@/components/shared/data-table'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { PageHeader } from '@/components/shared/page-header'
 import { SearchInput } from '@/components/shared/search-input'
-import { StatusConfirm } from '@/components/shared/status-confirm'
-import { TrashConfirm } from '@/components/shared/trash-confirm'
 import { FilterBuilder } from '@/components/shared/filter-builder'
 import type { FilterState, FilterOption } from '@/components/shared/filter-builder'
-import { Eye, Trash2, UsersRound, Activity, Calendar } from 'lucide-react'
+import { Eye, UsersRound, Activity, Calendar } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import * as z from 'zod'
 import type { DataTableColumn } from '@/components/shared/data-table'
@@ -80,10 +77,6 @@ export function UserManagementUI({
 
     const isEditMode = editingUser !== null
 
-    const openAdd = () => {
-        setEditingUser(null)
-        setIsOpen(true)
-    }
 
     const openEdit = (user: User) => {
         setEditingUser(user)
@@ -148,10 +141,10 @@ export function UserManagementUI({
     return (
         <>
             {/* Header & Toolbar */}
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-border/50">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between border-b border-border/50">
                 <PageHeader title="User Management" className="shrink-0 text-xl font-bold text-[#1c305c]" />
                 <div className="flex items-center flex-wrap gap-3">
-                    <SearchInput value={searchQuery} onValueChange={onSearchChange} placeholder="Search..." className="w-full sm:w-[250px] bg-white rounded-full h-10 shadow-sm border-gray-200" />
+                    <SearchInput value={searchQuery} onValueChange={onSearchChange} placeholder="Search..." className="w-full sm:w-62.5 bg-white rounded-full h-10 shadow-sm border-gray-200" />
                     <FilterBuilder options={filterOptions} filters={filters} onFiltersChange={onFiltersChange} />
                 </div>
             </div>
@@ -238,7 +231,7 @@ function UserForm({
             }}
             className="space-y-4"
         >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2">
                 <div className="md:col-span-2">
                     <form.AppField name="name">{(field) => <field.FormInput label="Name" placeholder="Enter full name" />}</form.AppField>
                 </div>
@@ -293,43 +286,4 @@ function UserForm({
     )
 }
 
-function UserActionCell({
-    user,
-    onEdit,
-    onToggleStatus,
-    onDelete,
-}: {
-    user: User
-    onEdit: () => void
-    onToggleStatus: () => void
-    onDelete: () => void
-}) {
-    const [statusOpen, setStatusOpen] = useState(false)
-    const [deleteOpen, setDeleteOpen] = useState(false)
 
-    return (
-        <>
-            <div className="flex items-center gap-2">
-                <Button size="icon" variant="ghost" onClick={onEdit} className="text-primary hover:bg-primary/10 hover:text-primary">
-                    <Eye className="size-4" />
-                </Button>
-                <Button size="icon" variant="ghost" onClick={() => setStatusOpen(true)} className="text-destructive hover:bg-destructive/10 hover:text-destructive">
-                    <Ban className="size-4" />
-                </Button>
-                <Button size="icon" variant="ghost" onClick={() => setDeleteOpen(true)} className="text-destructive hover:bg-destructive/10 hover:text-destructive">
-                    <Trash2 className="size-4" />
-                </Button>
-            </div>
-
-            <StatusConfirm
-                open={statusOpen}
-                onOpenChange={setStatusOpen}
-                name={user.name}
-                currentStatus={user.status}
-                newStatus={user.status === 'Active' ? 'Suspended' : 'Active'}
-                onConfirm={onToggleStatus}
-            />
-            <TrashConfirm open={deleteOpen} onOpenChange={setDeleteOpen} name={user.name} onConfirm={onDelete} />
-        </>
-    )
-}
