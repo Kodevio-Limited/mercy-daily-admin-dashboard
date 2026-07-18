@@ -1,5 +1,4 @@
 import { AppSidebar } from '@/components/main/app-sidebar'
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb'
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { getModuleByPath, MODULE_KEYS, MODULES } from '@/lib/module'
@@ -37,14 +36,6 @@ function RouteComponent() {
     const routeLabels = buildRouteLabels()
 
     const segments = pathname.split('/').filter(Boolean)
-    const crumbs = segments.map((_, index) => {
-        const href = '/' + segments.slice(0, index + 1).join('/')
-        const id = getModuleByPath(href)
-        const label = id ? routeLabels[href] : segments[index].replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
-        return { href, label }
-    })
-
-    const isHome = pathname === '/'
 
     return (
         <SidebarProvider>

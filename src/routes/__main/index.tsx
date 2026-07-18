@@ -72,7 +72,7 @@ function RouteComponent() {
                 transition={{ duration: motionTokens.duration.normal, ease: motionTokens.easing.smooth }}
             >
                 {/* Decorative overlay pattern could go here */}
-                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white to-transparent pointer-events-none" />
+                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-white to-transparent pointer-events-none" />
                 
                 <div className="flex flex-col gap-3 relative z-10">
                     <div className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold text-white uppercase tracking-wider w-fit border border-white/20">
@@ -87,7 +87,7 @@ function RouteComponent() {
                     </p>
                 </div>
 
-                <div className="bg-white/10 border border-white/20 backdrop-blur-sm rounded-xl p-4 shrink-0 relative z-10 w-full md:w-auto min-w-[200px]">
+                <div className="bg-white/10 border border-white/20 backdrop-blur-sm rounded-xl p-4 shrink-0 relative z-10 w-full md:w-auto min-w-50">
                     <div className="text-white/70 text-[10px] font-bold uppercase tracking-wider mb-1">TODAY'S SYSTEM DATE</div>
                     <div className="text-2xl font-bold text-white mb-2">July 06, 2026</div>
                     <div className="flex items-center gap-2">
@@ -141,7 +141,7 @@ function RouteComponent() {
                             </div>
                         </CardHeader>
                         <CardContent className="p-6 pt-0 flex-1 flex flex-col">
-                            <div className="h-[250px] w-full">
+                            <div className="h-62.5 w-full">
                                 <ResponsiveContainer width="100%" height="100%">
                                     <AreaChart data={PERFORMANCE_DATA} margin={{ top: 20, right: 0, left: 0, bottom: 0 }}>
                                         <defs>
@@ -196,7 +196,7 @@ function RouteComponent() {
                             <CardDescription>Where community interactions happen</CardDescription>
                         </CardHeader>
                         <CardContent className="flex flex-col items-center justify-center flex-1 p-6 pt-0">
-                            <div className="h-[200px] w-full relative flex items-center justify-center mt-4">
+                            <div className="h-50 w-full relative flex items-center justify-center mt-4">
                                 <ResponsiveContainer width="100%" height="100%">
                                     <PieChart>
                                         <Pie

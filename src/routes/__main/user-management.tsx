@@ -5,7 +5,8 @@ import { useMemo, useState } from 'react'
 import * as z from 'zod'
 import { USERS, createUser, updateUser, toggleUserStatus, deleteUser } from '#/lib/users'
 import type { User } from '#/lib/users'
-import { UserManagementUI, userSchema } from '@/components/shared/user-management-ui'
+import type { userSchema } from '@/components/shared/user-management-ui';
+import { UserManagementUI } from '@/components/shared/user-management-ui'
 
 const searchSchema = z.object({
     page: z.number().catch(1).optional(),

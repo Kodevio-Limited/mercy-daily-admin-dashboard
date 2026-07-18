@@ -149,7 +149,7 @@ function PaymentDetailsDialog({ payment, isOpen, onOpenChange }: { payment: Paym
 
     return (
         <Dialog open={isOpen} onOpenChange={onOpenChange}>
-            <DialogContent className="sm:max-w-[450px]">
+            <DialogContent className="sm:max-w-112.5">
                 <DialogHeader>
                     <DialogTitle className="text-xl font-bold">Payment Details</DialogTitle>
                 </DialogHeader>

@@ -89,7 +89,7 @@ function SubscriptionsPage() {
             </div>
 
             <Dialog open={editingPlan !== null} onOpenChange={(open) => !open && setEditingPlan(null)}>
-                <DialogContent className="sm:max-w-[450px]">
+                <DialogContent className="sm:max-w-112.5">
                     <DialogHeader>
                         <DialogTitle className="text-xl font-bold tracking-wide">Edit Plan</DialogTitle>
                     </DialogHeader>

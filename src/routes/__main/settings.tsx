@@ -76,7 +76,7 @@ function RouteComponent() {
                 </nav>
 
                 {/* Right Content Area */}
-                <div className="border rounded-xl bg-card p-6 min-h-[500px]">
+                <div className="border rounded-xl bg-card p-6 min-h-125">
                     {activeTab === 'general' && <GeneralTab />}
                     {activeTab === 'profile' && <ProfileTab />}
                     {activeTab === 'security' && <SecurityTab />}
@@ -140,7 +140,7 @@ function GeneralTab() {
                         type="submit" 
                         variant="default"
                         disabled={form.state.isSubmitting}
-                        className="w-full sm:w-[250px]"
+                        className="w-full sm:w-62.5"
                     >
                         Save
                     </Button>
@@ -238,7 +238,7 @@ function ProfileTab() {
                         type="submit" 
                         variant="default"
                         disabled={form.state.isSubmitting}
-                        className="w-full sm:w-[350px]"
+                        className="w-full sm:w-87.5"
                     >
                         Save
                     </Button>
@@ -345,7 +345,7 @@ function SecurityTab() {
                         type="submit" 
                         variant="default"
                         disabled={form.state.isSubmitting}
-                        className="w-full sm:w-[250px]"
+                        className="w-full sm:w-62.5"
                     >
                         Save Changes
                     </Button>

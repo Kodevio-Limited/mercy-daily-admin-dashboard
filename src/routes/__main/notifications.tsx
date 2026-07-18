@@ -61,7 +61,7 @@ function NotificationsPage() {
                     value={searchQuery} 
                     onValueChange={setSearchQuery} 
                     placeholder="Search" 
-                    className="w-full sm:w-[350px]"
+                    className="w-full sm:w-87.5"
                 />
                 <Button
                     variant="default"
@@ -87,7 +87,7 @@ function NotificationsPage() {
 
             {/* Create Notification Dialog */}
             <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
-                <DialogContent className="sm:max-w-[500px] p-0 overflow-hidden bg-[#FCF7F2] border-[#E5D4C0]">
+                <DialogContent className="sm:max-w-125 p-0 overflow-hidden bg-[#FCF7F2] border-[#E5D4C0]">
                     <DialogHeader className="px-6 py-5 border-b border-[#E5D4C0]/70 m-0">
                         <DialogTitle className="text-3xl font-extrabold text-[#38261A]">Create Notification</DialogTitle>
                     </DialogHeader>
@@ -101,7 +101,7 @@ function NotificationsPage() {
                         <div className="space-y-2">
                             <Label className="text-[#38261A] text-[15px] font-medium">Audience</Label>
                             <Select>
-                                <SelectTrigger className="bg-transparent border-[#E5D4C0] focus:ring-primary/20 h-11 w-full data-[placeholder]:text-muted-foreground/60 text-base">
+                                <SelectTrigger className="bg-transparent border-[#E5D4C0] focus:ring-primary/20 h-11 w-full data-placeholder:text-muted-foreground/60 text-base">
                                     <SelectValue placeholder="Select your audience" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -122,7 +122,7 @@ function NotificationsPage() {
 
                         <div className="space-y-2">
                             <Label className="text-[#38261A] text-[15px] font-medium">Message</Label>
-                            <Textarea placeholder="Typing" className="bg-transparent border-[#E5D4C0] focus-visible:ring-primary/20 placeholder:text-muted-foreground/60 min-h-[120px] resize-none text-base" />
+                            <Textarea placeholder="Typing" className="bg-transparent border-[#E5D4C0] focus-visible:ring-primary/20 placeholder:text-muted-foreground/60 min-h-30 resize-none text-base" />
                         </div>
 
                         <div className="flex items-center gap-3 mt-4 pt-2">
@@ -131,7 +131,7 @@ function NotificationsPage() {
                                 className="flex-1 h-11 border-[#E5D4C0] text-muted-foreground hover:bg-black/5 hover:text-muted-foreground rounded-lg text-base font-medium"
                                 onClick={() => setIsCreateOpen(false)}
                             >
-                                <Clock className="h-[18px] w-[18px] mr-2" />
+                                <Clock className="h-4.5 w-4.5 mr-2" />
                                 Schedule
                             </Button>
                             <Button 
@@ -139,7 +139,7 @@ function NotificationsPage() {
                                 className="flex-1 h-11 bg-primary hover:bg-primary/90 text-white rounded-lg text-base font-medium shadow-sm"
                                 onClick={() => setIsCreateOpen(false)}
                             >
-                                <Send className="h-[18px] w-[18px] mr-2" />
+                                <Send className="h-4.5 w-4.5 mr-2" />
                                 Send Now
                             </Button>
                         </div>

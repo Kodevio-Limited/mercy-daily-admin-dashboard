@@ -2,7 +2,7 @@
 
 import { NavMain } from '@/components/main/nav-main'
 import { NavUser } from '@/components/main/nav-user'
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '@/components/ui/sidebar'
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from '@/components/ui/sidebar'
 import { MODULES, MODULE_KEYS } from '@/lib/module'
 import { MODULE_ICONS } from '@/lib/module-icons'
 
@@ -23,7 +23,7 @@ export function AppSidebar({ user, ...props }: React.ComponentProps<typeof Sideb
             <SidebarHeader className="px-4 py-3 group-data-[collapsible=icon]:px-0">
                 <div className="flex h-11 items-center px-5 group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:w-11 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:mx-auto">
                     <img src="/favicon.svg" alt="Icon" className="size-8 shrink-0 object-contain hidden group-data-[collapsible=icon]:block" />
-                    <img src="/mercy-logo.svg" alt="Logo" className="h-11 w-auto object-contain group-data-[collapsible=icon]:hidden -ml-2" />
+                    <img src="/mercy-logo.svg" alt="Logo" className="h-11 w-auto object-contain group-data-[collapsible=icon]:hidden" />
                 </div>
             </SidebarHeader>
             <SidebarContent>
